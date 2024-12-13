@@ -20,7 +20,9 @@ namespace CocktailApp
             builder.Services.AddSingleton<HttpClient>();
             builder.Services.AddTransient<CocktailService>();
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<DetailPage>();
             builder.Services.AddSingleton<MainViewModel>();
+            builder.Services.AddTransient<DetailsViewModel>();
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif

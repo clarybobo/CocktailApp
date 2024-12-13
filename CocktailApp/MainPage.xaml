@@ -1,47 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:CocktailApp.ViewModels"
              xmlns:models="clr-namespace:CocktailApp.Models"
              x:Class="CocktailApp.MainPage">
     <!--Title="{Binding Title}">-->
-             <!--xmlns:viewmodels="clr-namespace:CocktailApp.ViewModels"-->
+    <!--xmlns:viewmodels="clr-namespace:CocktailApp.ViewModels"-->
 
     <!--<Grid RowDefinitions="Auto, Auto, Auto, *"
           ColumnDefinitions="125, *"                  
             Padding="30,0">
 
-        --><!-- Sökruta --><!--
+        -->
+    <!-- Sökruta -->
+    <!--
         <Entry Placeholder="Enter name of cocktail"
                Text="{Binding SearchQuery}"
                Grid.Row="0"
                Margin="0,10,0,10" />
 
-        --><!-- Sök-knapp --><!--
+        -->
+    <!-- Sök-knapp -->
+    <!--
         <Button Text="Search"
                 Command="{Binding SearchCommand}"
                 Grid.Row="0"
                 Margin="0,10,0,10" />
 
-        --><!-- Get Cocktails-knapp --><!--
+        -->
+    <!-- Get Cocktails-knapp -->
+    <!--
         <Button Text="Get Cocktails"
                 Command="{Binding GetCommand}"
                 Grid.Row="2"
                 Margin="0,10,0,10" />
 
-        --><!--Sökruta--><!--        
+        -->
+    <!--Sökruta-->
+    <!--        
         <Entry Placeholder="Enter name of cocktail"
                Text="{Binding SearchQuery}"
                Grid.Row="0"
                Grid.ColumnSpan="2"></Entry>
        
-        --><!--Sök-knapp--><!--
+        -->
+    <!--Sök-knapp-->
+    <!--
         <Button Text="Search"
                 Command="{Binding SearchCommand}"
                 Grid.Row="0"
                 Grid.ColumnSpan="2"
                 Margin="0,10,0,10" />-->
-        
-        <!--Lista cocktails--><!--        
+
+    <!--Lista cocktails-->
+    <!--        
         <Button Text="Get Cocktails"
                 Command="{Binding GetCommand}"
                 Grid.Row="0"
@@ -60,15 +72,15 @@
                            Aspect="AspectFill"></Image>
                         <VerticalStackLayout Grid.Column="1">
                             <Label Text="{Binding StrDrink}"></Label>                            
-                            --><!--<Label Text="{Binding CocktailsIngredientsWithMeasurements[0]}"></Label>--><!--
+                            -->
+    <!--<Label Text="{Binding CocktailsIngredientsWithMeasurements[0]}"></Label>-->
+    <!--
                         </VerticalStackLayout>
                     </HorizontalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>    
     </Grid>-->
-
-
 
     <Grid RowDefinitions="Auto, Auto, Auto, *"
           ColumnDefinitions="*"
@@ -97,20 +109,32 @@
                         Grid.Row="3">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Cocktail">
-                    <HorizontalStackLayout Padding="10">
-                        <Image Source="{Binding StrDrinkThumb}"
+                    <!--Här kan man ha en swipeview om man vill-->
+                    <Frame HeightRequest="125"
+                           Margin="5"
+                           Padding="5"
+                           BackgroundColor="LightSteelBlue">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=ViewDetailsCommand}"
+                                CommandParameter="{Binding .}"/>
+                        </Frame.GestureRecognizers>
+                        <HorizontalStackLayout Padding="10">
+                            <Image Source="{Binding StrDrinkThumb}"
                                HeightRequest="100"
                                WidthRequest="100"
                                Aspect="AspectFill" />
-                        <VerticalStackLayout>
-                            <Label Text="{Binding StrDrink}"
+                            <VerticalStackLayout>
+                                <Label Text="{Binding StrDrink}"
                                    FontAttributes="Bold"
                                    FontSize="18" />
-                        </VerticalStackLayout>
-                    </HorizontalStackLayout>
+                                <Label Text="{Binding StrInstructions}"
+                                  FontSize="Default"></Label>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
     </Grid>
-
 </ContentPage>

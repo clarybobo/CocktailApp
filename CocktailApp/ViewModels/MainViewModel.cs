@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace CocktailApp.ViewModels
 {
-    public partial class MainViewModel: BaseViewModel
+    public partial class MainViewModel : BaseViewModel
     {
         private readonly CocktailService cocktailService;
 
@@ -15,12 +15,12 @@ namespace CocktailApp.ViewModels
 
 
         [ObservableProperty]
-        string searchQuery = string.Empty; 
+        string searchQuery = string.Empty;
 
         public MainViewModel(CocktailService cocktailService)
         {
             this.cocktailService = cocktailService;
-        }       
+        }
 
         [RelayCommand]
         async Task Get()
@@ -45,10 +45,16 @@ namespace CocktailApp.ViewModels
         }
 
         [RelayCommand]
-        async Task ViewDetails(string id)
+        async Task ViewDetails(Cocktail cocktail)
         {
-            var cocktail = await cocktailService.ViewDetails(id);
-        }
+            if (cocktail is null) return;
 
+            await Shell.Current.GoToAsync($"{nameof(DetailPage)}",
+                true,
+                new Dictionary<string, object>
+                {
+                    { "Cocktail", cocktail}
+                });
+        }
     }
 }

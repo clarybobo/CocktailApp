@@ -22,46 +22,7 @@ namespace CocktailApp.Models
         public string? StrMeasure3 { get; set; }
         public string? StrMeasure4 { get; set; }
         public string? StrInstructions { get; set; }
-
-        //[JsonPropertyName("idDrink")]
-
-
-        //[JsonPropertyName("idDrink")]
-        //public string Id { get; set; }
-
-        //[JsonPropertyName("strDrink")]
-        //public string Drink { get; set; }
-
-        //[JsonPropertyName("strInstructions")]
-        //public string Instructions { get; set; }
-
-        //[JsonPropertyName("strDrinkThumb")]
-        //public string ImageUrl { get; set; }
-        ////TODO: lägg till så alla 15 ingredienser finns med
-
-        //[JsonPropertyName("strIngredient1")]
-        //public string Ingredient1 { get; set; }
-
-        //[JsonPropertyName("strIngredient2")]
-        //public string Ingredient2 { get; set; }
-
-        //[JsonPropertyName("strIngredient3")]
-        //public string Ingredient3 { get; set; }
-
-        //[JsonPropertyName("strIngredient4")]
-        //public string Ingredient4 { get; set; }
-
-        //[JsonPropertyName("strMeasure1")]
-        //public string Measure1 { get; set; }
-
-        //[JsonPropertyName("strMeasure2")]
-        //public string Measure2 { get; set; }
-
-        //[JsonPropertyName("strMeasure3")]
-        //public string Measure3 { get; set; }
-
-        //[JsonPropertyName("strMeasure4")]
-        //public string Measure4 { get; set; }
+        
     }
 
 }
