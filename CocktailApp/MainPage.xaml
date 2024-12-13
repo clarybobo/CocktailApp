@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CocktailApp.Models"
+             x:Class="CocktailApp.MainPage">
+    <!--Title="{Binding Title}">-->
+             <!--xmlns:viewmodels="clr-namespace:CocktailApp.ViewModels"-->
+
+    <Grid RowDefinitions="Auto, *"
+          ColumnDefinitions="125, *"         
+            Padding="30,0">
+
+        <Label Text="COCKTAILS"></Label>     
+        <Button Text="Get Cocktails"
+                Command="{Binding GetCommand}"
+                Grid.ColumnSpan="2"></Button>
+        <CollectionView ItemsSource="{Binding Cocktails}"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Cocktail">
+                    <HorizontalStackLayout>
+                        <Image Source="{Binding StrDrinkThumb}"
+                            HeightRequest="100" 
+                           WidthRequest="100"
+                           Aspect="AspectFill"></Image>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="{Binding StrDrink}"></Label>                            
+                            <!--<Label Text="{Binding CocktailsIngredientsWithMeasurements[0]}"></Label>-->
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>    
+    </Grid>
+
+</ContentPage>
