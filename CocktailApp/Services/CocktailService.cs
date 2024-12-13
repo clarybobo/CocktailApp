@@ -5,14 +5,6 @@ namespace CocktailApp.Services
 {
     public class CocktailService
     {
-        //HttpClient httpClient;
-        //List<Cocktail> cocktails = new List<Cocktail>();
-
-        //public CocktailService(HttpClient httpClient)
-        //{
-        //    httpClient = new HttpClient();
-        //}
-
         HttpClient _httpClient;
         List<Cocktail> cocktails = new List<Cocktail>();
 
@@ -40,6 +32,36 @@ namespace CocktailApp.Services
             return new List<Cocktail>();
 
         }
+
+        public async Task<List<Cocktail>> Search(string query)
+        {
+            var url = $"https://www.thecocktaildb.com/api/json/v1/1/search.php?s={query}";
+            var response = await _httpClient.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var cocktailResponse = await response.Content.ReadFromJsonAsync<CocktailResponse>();
+                return cocktailResponse?.CocktailList ?? new List<Cocktail>();
+            }
+
+            Console.WriteLine($"Failed to fetch cocktails for query: {response.StatusCode}");
+            return new List<Cocktail>();
+        }
+
+        public async Task<Cocktail> ViewDetails(string id)
+        {
+            var url = $"https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i={id}";
+            var response = await _httpClient.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var cocktailResponse = await response.Content.ReadFromJsonAsync<CocktailResponse>();
+                return cocktailResponse?.CocktailList?.FirstOrDefault();
+            }
+            return null;
+        }
+
+
 
         //public async Task<Cocktail> GetCocktailDetailsAsync(string cocktailId)
         //{

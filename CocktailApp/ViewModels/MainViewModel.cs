@@ -6,20 +6,21 @@ using System.Collections.ObjectModel;
 
 namespace CocktailApp.ViewModels
 {
-    public partial class MainViewModel : BaseViewModel
+    public partial class MainViewModel: BaseViewModel
     {
         private readonly CocktailService cocktailService;
 
         [ObservableProperty]
         ObservableCollection<Cocktail> cocktails = new ObservableCollection<Cocktail>();
 
-        //[ObservableProperty]
-        //Cocktail cocktailDetails; 
+
+        [ObservableProperty]
+        string searchQuery = string.Empty; 
 
         public MainViewModel(CocktailService cocktailService)
         {
             this.cocktailService = cocktailService;
-        }
+        }       
 
         [RelayCommand]
         async Task Get()
@@ -30,39 +31,24 @@ namespace CocktailApp.ViewModels
             {
                 Cocktails.Add(cocktail);
             }
-
         }
 
-        //[RelayCommand]
-        //async Task ViewDetails(string cocktailId)
-        //{
-        //    var cocktail = await cocktailService.GetCocktailDetailsAsync(cocktailId);
-        //    cocktailDetails = cocktail;
-        //}
+        [RelayCommand]
+        async Task Search()
+        {
+            Cocktails.Clear();
+            var results = await cocktailService.Search(SearchQuery);
+            foreach (var result in results)
+            {
+                Cocktails.Add(result);
+            }
+        }
 
-        //[RelayCommand]
-        //Task Get()
-        //{
+        [RelayCommand]
+        async Task ViewDetails(string id)
+        {
+            var cocktail = await cocktailService.ViewDetails(id);
+        }
 
-        //}
     }
 }
-
-
-//public List<string> IngredientsWithMeasurements
-//{
-//    get
-//    {
-//        var ingredients = new List<string>
-//        {
-//            FomatIngredients()
-//        };
-//    }
-//}
-
-//public string FormatIngredients(string ingredient, string measure)
-//{
-//    if (string.IsNullOrEmpty(ingredient)) return null;
-//    return !string.IsNullOrEmpty(measure) ? $"{measure} {ingredient}" : ingredient;         
-
-//}
