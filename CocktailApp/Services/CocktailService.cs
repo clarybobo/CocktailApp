@@ -14,7 +14,7 @@ namespace CocktailApp.Services
         }
 
         public async Task<List<Cocktail>> GetCocktails()
-        {
+      {
             var url = $"{baseUrl}filter.php?c=Cocktail";
             var response = await _httpClient.GetAsync(url);
 

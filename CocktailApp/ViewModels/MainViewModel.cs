@@ -25,62 +25,76 @@ namespace CocktailApp.ViewModels
 
         private async void LoadCocktails()
         {
-            var basicCocktails = await cocktailService.GetCocktails();
-
-            if (basicCocktails.Count > 0)
-            {
-                Cocktails.Clear();
-
-                // Hämta detaljer för varje drink
-                foreach (var cocktail in basicCocktails)
-                {
-                    var fullDetails = await cocktailService.ViewDetails(cocktail.IdDrink);
-                    if (fullDetails != null)
-                    {
-                        Cocktails.Add(fullDetails); // Lägg till drinken med alla detaljer
-                    }
-                }
-            }
             //var basicCocktails = await cocktailService.GetCocktails();
 
             //if (basicCocktails.Count > 0)
             //{
             //    Cocktails.Clear();
 
-            //    // Kör parallellt för att hämta detaljer om varje cocktail
-            //    var tasks = basicCocktails.Select(async cocktail =>
+            //    // Hämta detaljer för varje drink
+            //    foreach (var cocktail in basicCocktails)
             //    {
             //        var fullDetails = await cocktailService.ViewDetails(cocktail.IdDrink);
-            //        return fullDetails;
-            //    });
-
-            //    var detailedCocktails = await Task.WhenAll(tasks);
-
-            //    // Lägg till alla cocktails med fulla detaljer till listan
-            //    foreach (var detailedCocktail in detailedCocktails)
-            //    {
-            //        if (detailedCocktail != null)
+            //        if (fullDetails != null)
             //        {
-            //            Cocktails.Add(detailedCocktail);
+            //            Cocktails.Add(fullDetails); // Lägg till drinken med alla detaljer
             //        }
             //    }
             //}
+            var basicCocktails = await cocktailService.GetCocktails();
+
+            foreach (var cocktail in basicCocktails)
+            {
+                if (!Cocktails.Any(c => c.IdDrink == cocktail.IdDrink))
+                {
+                    var fullDetails = await cocktailService.ViewDetails(cocktail.IdDrink);
+                    if (fullDetails != null)
+                    {
+                        Cocktails.Add(fullDetails);
+                    }
+                }
+            }
         }       
 
         [RelayCommand]
         async Task Search()
         {
+            //if (string.IsNullOrWhiteSpace(SearchQuery))
+            //{
+            //    LoadCocktails(); 
+            //    return;
+            //}
+
+            //Cocktails.Clear();
+            //var results = await cocktailService.Search(SearchQuery);
+            //foreach (var result in results)
+            //{
+            //    Cocktails.Add(result);
+            //}
+
             if (string.IsNullOrWhiteSpace(SearchQuery))
             {
-                LoadCocktails(); 
-                return;
-            }
+                // Tömmer listan helt och laddar alla cocktails igen
+                Cocktails.Clear();
+                var basicCocktails = await cocktailService.GetCocktails();
 
-            Cocktails.Clear();
-            var results = await cocktailService.Search(SearchQuery);
-            foreach (var result in results)
+                foreach (var cocktail in basicCocktails)
+                {
+                    var fullDetails = await cocktailService.ViewDetails(cocktail.IdDrink);
+                    if (fullDetails != null)
+                    {
+                        Cocktails.Add(fullDetails);
+                    }
+                }
+            }
+            else
             {
-                Cocktails.Add(result);
+                var results = await cocktailService.Search(SearchQuery);
+                Cocktails.Clear();
+                foreach (var result in results)
+                {
+                    Cocktails.Add(result);
+                }
             }
         }
 

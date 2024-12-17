@@ -7,30 +7,36 @@
 
     <Grid RowDefinitions="Auto, Auto, Auto, *"
           ColumnDefinitions="*"
-          Padding="30,0">
+          Padding="30,0"
+          BackgroundColor="white">
 
         <!-- Sökruta -->
         <Entry Placeholder="Enter name of cocktail"
+               TextColor="Black"
                Text="{Binding SearchQuery}"
                Grid.Row="0"
                Margin="0,10,0,10" />
 
         <!-- Sök-knapp -->
         <Button Text="Search"
+                BackgroundColor="MediumPurple"
+                TextColor="Black"
+                FontAttributes="Bold"
                 Command="{Binding SearchCommand}"
                 Grid.Row="1"
                 Margin="0,10,0,10" />       
 
         <!-- Lista med cocktails -->
         <CollectionView ItemsSource="{Binding Cocktails}"
-                        Grid.Row="3">
+                        Grid.Row="3"
+                       >
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Cocktail">
                     <!--Här kan man ha en swipeview om man vill-->
                     <Frame HeightRequest="125"
                            Margin="5"
                            Padding="5"
-                           BackgroundColor="LightYellow">
+                           BackgroundColor="White">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer 
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=ViewDetailsCommand}"
