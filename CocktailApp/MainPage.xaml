@@ -4,83 +4,6 @@
              xmlns:viewmodel="clr-namespace:CocktailApp.ViewModels"
              xmlns:models="clr-namespace:CocktailApp.Models"
              x:Class="CocktailApp.MainPage">
-    <!--Title="{Binding Title}">-->
-    <!--xmlns:viewmodels="clr-namespace:CocktailApp.ViewModels"-->
-
-    <!--<Grid RowDefinitions="Auto, Auto, Auto, *"
-          ColumnDefinitions="125, *"                  
-            Padding="30,0">
-
-        -->
-    <!-- Sökruta -->
-    <!--
-        <Entry Placeholder="Enter name of cocktail"
-               Text="{Binding SearchQuery}"
-               Grid.Row="0"
-               Margin="0,10,0,10" />
-
-        -->
-    <!-- Sök-knapp -->
-    <!--
-        <Button Text="Search"
-                Command="{Binding SearchCommand}"
-                Grid.Row="0"
-                Margin="0,10,0,10" />
-
-        -->
-    <!-- Get Cocktails-knapp -->
-    <!--
-        <Button Text="Get Cocktails"
-                Command="{Binding GetCommand}"
-                Grid.Row="2"
-                Margin="0,10,0,10" />
-
-        -->
-    <!--Sökruta-->
-    <!--        
-        <Entry Placeholder="Enter name of cocktail"
-               Text="{Binding SearchQuery}"
-               Grid.Row="0"
-               Grid.ColumnSpan="2"></Entry>
-       
-        -->
-    <!--Sök-knapp-->
-    <!--
-        <Button Text="Search"
-                Command="{Binding SearchCommand}"
-                Grid.Row="0"
-                Grid.ColumnSpan="2"
-                Margin="0,10,0,10" />-->
-
-    <!--Lista cocktails-->
-    <!--        
-        <Button Text="Get Cocktails"
-                Command="{Binding GetCommand}"
-                Grid.Row="0"
-                Grid.ColumnSpan="2"></Button>
-        
-        <CollectionView ItemsSource="{Binding Cocktails}"
-                        Grid.Row="1"
-                        Grid.ColumnSpan="2">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Cocktail">
-                    <HorizontalStackLayout>
-                        <Image Source="{Binding StrDrinkThumb}"
-                            HeightRequest="100" 
-                           WidthRequest="100"
-                               Margin="10"
-                           Aspect="AspectFill"></Image>
-                        <VerticalStackLayout Grid.Column="1">
-                            <Label Text="{Binding StrDrink}"></Label>                            
-                            -->
-    <!--<Label Text="{Binding CocktailsIngredientsWithMeasurements[0]}"></Label>-->
-    <!--
-                        </VerticalStackLayout>
-                    </HorizontalStackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>    
-    </Grid>-->
 
     <Grid RowDefinitions="Auto, Auto, Auto, *"
           ColumnDefinitions="*"
@@ -96,13 +19,7 @@
         <Button Text="Search"
                 Command="{Binding SearchCommand}"
                 Grid.Row="1"
-                Margin="0,10,0,10" />
-
-        <!-- Get Cocktails-knapp -->
-        <!--<Button Text="Get Cocktails"
-                Command="{Binding GetCommand}"
-                Grid.Row="2"
-                Margin="0,10,0,10" />-->
+                Margin="0,10,0,10" />       
 
         <!-- Lista med cocktails -->
         <CollectionView ItemsSource="{Binding Cocktails}"

@@ -7,7 +7,6 @@ namespace CocktailApp.Services
     {
         HttpClient _httpClient;
         private readonly string baseUrl = "https://www.thecocktaildb.com/api/json/v1/1/";
-        //List<Cocktail> cocktails = new List<Cocktail>();
 
         public CocktailService(HttpClient httpClient)
         {
@@ -20,12 +19,13 @@ namespace CocktailApp.Services
             var response = await _httpClient.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
-            {              
+            {
                 var cocktailResponse = await response.Content.ReadFromJsonAsync<CocktailResponse>();
                 return cocktailResponse?.CocktailList ?? new List<Cocktail>();
             }
             Console.WriteLine($"Failed to fetch cocktails: {response.StatusCode}");
             return new List<Cocktail>();
+
 
         }
 
@@ -56,6 +56,6 @@ namespace CocktailApp.Services
             }
             return null;
         }
-     
+
     }
 }

@@ -16,6 +16,20 @@ namespace CocktailApp.Models
         public string? StrIngredient2 { get; set; }
         public string? StrIngredient3 { get; set; }
         public string? StrIngredient4 { get; set; }
+        public string? StrIngredient5 { get; set; }
+        public string? StrIngredient6 { get; set; }
+        public string? StrIngredient7 { get; set; }
+        public string? StrIngredient8 { get; set; }
+        public string? StrIngredient9 { get; set; }
+        public string? StrIngredient10 { get; set; }
+        public string? StrMeasure1 { get; set; }
+        public string? StrMeasure2 { get; set; }
+        public string? StrMeasure3 { get; set; }
+        public string? StrMeasure4 { get; set; }
+        public string? StrMeasure5 { get; set; }
+        public string? StrMeasure6 { get; set; }
+        public string? StrMeasure7 { get; set; }
+
         public string? StrInstructions { get; set; }        
     }
 
