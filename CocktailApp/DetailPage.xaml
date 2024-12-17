@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:viewmodels="clr-namespace:CocktailApp.ViewModels"
+             xmlns:viewmodels="clr-namespace:CocktailApp.ViewModels"
              x:DataType="viewmodels:DetailsViewModel"
              x:Class="CocktailApp.DetailPage"
              Title="{Binding Cocktail.StrDrink}">
-    <VerticalStackLayout>
-        <Image Source="{Binding Cocktail.StrDrinkThumb}"></Image>
+
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto, *">
+
+
+        <Image Source="{Binding Cocktail.StrDrinkThumb}"
+            Grid.Row="0"/>
+
+        <Label Text="Ingredients"
+               FontSize="Title"
+               Grid.Row="1"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center" />
+        <Label Text="{Binding Cocktail.StrIngredient1}"
+               Grid.Row="2"/>
+
         <Label 
-            Text="{Binding Cocktail.StrDrink}"
+            Text="Instructions"
+            FontSize="Title"
+            Grid.Row="3"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Label Text="{Binding Cocktail.StrInstructions}"></Label>
-    </VerticalStackLayout>
+        <Label Text="{Binding Cocktail.StrInstructions}"
+               Grid.Row="4"/>
+    </Grid>
 </ContentPage>

@@ -6,7 +6,8 @@ namespace CocktailApp.Services
     public class CocktailService
     {
         HttpClient _httpClient;
-        List<Cocktail> cocktails = new List<Cocktail>();
+        private readonly string baseUrl = "https://www.thecocktaildb.com/api/json/v1/1/";
+        //List<Cocktail> cocktails = new List<Cocktail>();
 
         public CocktailService(HttpClient httpClient)
         {
@@ -14,8 +15,8 @@ namespace CocktailApp.Services
         }
 
         public async Task<List<Cocktail>> GetCocktails()
-        {        
-            var url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail";
+        {
+            var url = $"{baseUrl}filter.php?c=Cocktail";
             var response = await _httpClient.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
@@ -30,7 +31,7 @@ namespace CocktailApp.Services
 
         public async Task<List<Cocktail>> Search(string query)
         {
-            var url = $"https://www.thecocktaildb.com/api/json/v1/1/search.php?s={query}";
+            var url = $"{baseUrl}search.php?s={query}";
             var response = await _httpClient.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
@@ -45,7 +46,7 @@ namespace CocktailApp.Services
 
         public async Task<Cocktail> ViewDetails(string id)
         {
-            var url = $"https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i={id}";
+            var url = $"{baseUrl}lookup.php?i={id}";
             var response = await _httpClient.GetAsync(url);
 
             if (response.IsSuccessStatusCode)

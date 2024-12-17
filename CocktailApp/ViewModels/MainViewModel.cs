@@ -20,18 +20,47 @@ namespace CocktailApp.ViewModels
         public MainViewModel(CocktailService cocktailService)
         {
             this.cocktailService = cocktailService;
+            LoadCocktails();
+
         }
 
-        [RelayCommand]
-        async Task Get()
+        private async void LoadCocktails()
         {
-            Cocktails.Clear();
-            var cocktailList = await cocktailService.GetCocktails();
-            foreach (var cocktail in cocktailList)
+            var cocktails = await cocktailService.GetCocktails();
+            if (cocktails.Count != 0)
             {
-                Cocktails.Add(cocktail);
+                Cocktails.Clear();
+                foreach (var cocktail in cocktails)
+                {
+                    Cocktails.Add(cocktail);
+                }
             }
+
         }
+
+
+        //private async void LoadCocktail(Cocktail cocktail)
+        //{
+        //    if (cocktail is null || string.IsNullOrEmpty(cocktail.IdDrink)) return;
+
+        //    var fullCocktail = await cocktailService.ViewDetails(cocktail.IdDrink);
+        //    if (fullCocktail != null)
+        //    {
+        //        Cocktails.Clear();
+        //        Cocktails.Add(fullCocktail);
+        //    }
+        //}
+
+        //[RelayCommand]
+        //async Task Get()
+        //{
+        //    Cocktails.Clear();
+        //    var cocktailList = await cocktailService.GetCocktails();
+        //    foreach (var cocktail in cocktailList)
+        //    {
+        //        Cocktails.Add(cocktail);
+        //    }
+        //}
 
         [RelayCommand]
         async Task Search()
