@@ -11,7 +11,7 @@ namespace CocktailApp.ViewModels
         private readonly CocktailService cocktailService;
 
         [ObservableProperty]
-        ObservableCollection<Cocktail> cocktails = new ObservableCollection<Cocktail>();
+        ObservableCollection<Cocktail> cocktails = new();
 
 
         [ObservableProperty]
@@ -24,25 +24,21 @@ namespace CocktailApp.ViewModels
         }
 
         private async void LoadCocktails()
-        {
+        {            
             var basicCocktails = await cocktailService.GetCocktails();
 
             foreach (var cocktail in basicCocktails)
             {
                 if (!Cocktails.Any(c => c.IdDrink == cocktail.IdDrink))
                 {
-                    var fullDetails = await cocktailService.ViewDetails(cocktail.IdDrink);
-                    if (fullDetails != null)
-                    {
-                        Cocktails.Add(fullDetails);
-                    }
+                    Cocktails.Add(cocktail); 
                 }
             }
         }
 
         [RelayCommand]
         async Task Search()
-        {
+        {           
             if (string.IsNullOrWhiteSpace(SearchQuery))
             {
                 Cocktails.Clear();
@@ -50,11 +46,7 @@ namespace CocktailApp.ViewModels
 
                 foreach (var cocktail in basicCocktails)
                 {
-                    var fullDetails = await cocktailService.ViewDetails(cocktail.IdDrink);
-                    if (fullDetails != null)
-                    {
-                        Cocktails.Add(fullDetails);
-                    }
+                    Cocktails.Add(cocktail); 
                 }
             }
             else
@@ -64,13 +56,13 @@ namespace CocktailApp.ViewModels
 
                 foreach (var result in results)
                 {
-                    Cocktails.Add(result);
+                    Cocktails.Add(result); 
                 }
             }
         }
 
         [RelayCommand]
-        partial void OnSearchQueryChanged(string value)
+        partial void OnSearchQueryChanged(string value) 
         {
             if (string.IsNullOrWhiteSpace(value))
             {
@@ -80,15 +72,19 @@ namespace CocktailApp.ViewModels
 
         [RelayCommand]
         async Task ViewDetails(Cocktail cocktail)
-        {
+        {            
             if (cocktail is null) return;
 
-            await Shell.Current.GoToAsync($"{nameof(DetailPage)}",
-                true,
-                new Dictionary<string, object>
-                {
-                    { "Cocktail", cocktail}
-                });
+            var fullDetails = await cocktailService.ViewDetails(cocktail.IdDrink);
+            if (fullDetails != null)
+            {                
+                await Shell.Current.GoToAsync($"{nameof(DetailPage)}",
+                    true,
+                    new Dictionary<string, object>
+                    {
+                { "Cocktail", fullDetails}
+                    });
+            }
         }
     }
 }

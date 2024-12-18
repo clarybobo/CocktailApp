@@ -8,7 +8,7 @@
 
     <Grid RowDefinitions="Auto, Auto, Auto, *"
           ColumnDefinitions="*"
-          Padding="30,0">      
+          Padding="30,0">
 
         <!-- Sökrutan -->
         <Frame CornerRadius="25" HeightRequest="50" Padding="0" BackgroundColor="White" Margin="0,20,0,20">
@@ -18,8 +18,8 @@
                        TextColor="Black"
                        Text="{Binding SearchQuery}"
                        Margin="24,0,0,0"               
-                       BackgroundColor="White"/>   
-                      
+                       BackgroundColor="White"/>
+
                 <!-- Sök-knappen -->
                 <Button Text="Search"
                 BackgroundColor="Black"
@@ -39,16 +39,17 @@
         <CollectionView ItemsSource="{Binding Cocktails}"
                         Grid.Row="3"
                         Margin="10">
+            <!--Meddelande om det är en tom view-->
             <CollectionView.EmptyView>
                 <StackLayout>
                     <Label Text="No cocktails found :("
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               FontSize="Large"
-               TextColor="Black"/>
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           FontSize="Large"
+                           TextColor="Black"/>
                 </StackLayout>
             </CollectionView.EmptyView>
-            
+
             <CollectionView.ItemTemplate>
 
                 <DataTemplate x:DataType="models:Cocktail">
@@ -79,7 +80,7 @@
                                        FontSize="18" 
                                        Margin="10"
                                        TextColor="Black" />
-                            </VerticalStackLayout>                        
+                            </VerticalStackLayout>
                         </Frame>
                     </Grid>
                 </DataTemplate>
