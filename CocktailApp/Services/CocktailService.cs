@@ -19,7 +19,7 @@ namespace CocktailApp.Services
             var response = await _httpClient.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
-            {
+       {
                 var cocktailResponse = await response.Content.ReadFromJsonAsync<CocktailResponse>();
                 return cocktailResponse?.CocktailList ?? new List<Cocktail>();
             }

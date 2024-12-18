@@ -12,10 +12,11 @@ namespace CocktailApp.ViewModels
         [ObservableProperty]
         Cocktail cocktail;
 
-        //[RelayCommand]
-        //private async void GoBack()
-        //{
-        //    await Shell.Current.GoToAsync("//MainPage"); // Navigera tillbaka till föregående sida (MainViewPage)
-        //}
+        [RelayCommand]
+        private async void GoBack()
+        {
+            await Shell.Current.GoToAsync("//MainPage");
+
+        }
     }
 }

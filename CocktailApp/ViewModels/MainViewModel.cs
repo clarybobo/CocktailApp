@@ -25,22 +25,6 @@ namespace CocktailApp.ViewModels
 
         private async void LoadCocktails()
         {
-            //var basicCocktails = await cocktailService.GetCocktails();
-
-            //if (basicCocktails.Count > 0)
-            //{
-            //    Cocktails.Clear();
-
-            //    // Hämta detaljer för varje drink
-            //    foreach (var cocktail in basicCocktails)
-            //    {
-            //        var fullDetails = await cocktailService.ViewDetails(cocktail.IdDrink);
-            //        if (fullDetails != null)
-            //        {
-            //            Cocktails.Add(fullDetails); // Lägg till drinken med alla detaljer
-            //        }
-            //    }
-            //}
             var basicCocktails = await cocktailService.GetCocktails();
 
             foreach (var cocktail in basicCocktails)
@@ -54,27 +38,13 @@ namespace CocktailApp.ViewModels
                     }
                 }
             }
-        }       
+        }
 
         [RelayCommand]
         async Task Search()
         {
-            //if (string.IsNullOrWhiteSpace(SearchQuery))
-            //{
-            //    LoadCocktails(); 
-            //    return;
-            //}
-
-            //Cocktails.Clear();
-            //var results = await cocktailService.Search(SearchQuery);
-            //foreach (var result in results)
-            //{
-            //    Cocktails.Add(result);
-            //}
-
             if (string.IsNullOrWhiteSpace(SearchQuery))
             {
-                // Tömmer listan helt och laddar alla cocktails igen
                 Cocktails.Clear();
                 var basicCocktails = await cocktailService.GetCocktails();
 
@@ -103,7 +73,7 @@ namespace CocktailApp.ViewModels
         {
             if (string.IsNullOrWhiteSpace(value))
             {
-                LoadCocktails(); // Ladda om alla cocktails om sökrutan är tom
+                LoadCocktails();
             }
         }
 
@@ -119,13 +89,5 @@ namespace CocktailApp.ViewModels
                     { "Cocktail", cocktail}
                 });
         }
-
-        //[RelayCommand]
-        //async Task GoBack()
-        //{
-        //    await Shell.Current.GoToAsync("..");
-        //}
-
-
     }
 }
