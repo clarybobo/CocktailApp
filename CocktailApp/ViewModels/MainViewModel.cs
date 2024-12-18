@@ -61,6 +61,7 @@ namespace CocktailApp.ViewModels
             {
                 var results = await cocktailService.Search(SearchQuery);
                 Cocktails.Clear();
+
                 foreach (var result in results)
                 {
                     Cocktails.Add(result);

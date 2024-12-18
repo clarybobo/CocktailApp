@@ -21,8 +21,8 @@
           Padding="5">
         
         <!--Ram bakom bilden-->
-        <BoxView HeightRequest="290"
-                 WidthRequest="290"
+        <BoxView HeightRequest="280"
+                 WidthRequest="280"
                  BackgroundColor="#c8bbf2" 
                  CornerRadius="8"/>
         
@@ -34,7 +34,7 @@
                Grid.Row="0"/>
         
         <!--Scrollbart innehåll-->
-        <ScrollView Margin="5" Grid.Row="1" Grid.RowSpan="2">
+        <ScrollView Margin="26" Grid.Row="1" Grid.RowSpan="2">
             <StackLayout>
                 
                 <!--Ingredienser och mått-->
@@ -56,11 +56,7 @@
                     <StackLayout Orientation="Horizontal">
                         <Label Text="{Binding Cocktail.StrMeasure4}"/>
                         <Label Text="{Binding Cocktail.StrIngredient4}"/>
-                    </StackLayout>
-                    <!--<StackLayout Orientation="Horizontal">
-                        <Label Text="{Binding Cocktail.StrMeasure5}"/>
-                        <Label Text="{Binding Cocktail.StrIngredient5}"/>
-                    </StackLayout>-->
+                    </StackLayout>            
                 </StackLayout>
 
                 <!--Instruktioner-->
@@ -73,7 +69,7 @@
                     <!--Bakåt-knapp-->
                     <Button Text="Back" 
                     Command="{Binding GoBackCommand}" 
-                    Margin="30,10,30,10" 
+                    Margin="30" 
                     BackgroundColor="Black" 
                     WidthRequest="200"/>
                     
